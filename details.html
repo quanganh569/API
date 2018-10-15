@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> EMPLOYER</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div id="page-wrapper text-center">
+			<div class="container">
+            <div class="row">
+                
+                    <h1 class="page-header text-center">DETAILS USERS</h1>
+                
+               
+            </div>
+           
+            <div class="row">
+                
+                    <div class="panel panel-default ">
+
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="text-center">
+                                <div class="row">
+                                    <img class="profile_img" src="images/boy.png">
+                                </div>
+                            </div>
+                            <br/>
+                        <div class="form-group">
+						  <label >ID:</label>
+						  <input type="text" class="form-control " readonly id="txtid">
+						  		<br/>
+						  <label >NAME:</label>
+						  <input type="text" class="form-control" id="txtname">
+						</div>
+
+						      <br/>
+                        <div class="form-group">
+						  <label >USERNAME :</label>
+						  <input type="text" class="form-control "  id="txtusername">
+						  		<br/>
+						  <label >EMAIL :</label>
+						  <input type="text" class="form-control" id="txtemail">
+						</div>
+
+						      <br/>
+                        <div class="form-group">
+						  <label >PHONE :</label>
+						  <input type="text" class="form-control "  id="txtphone">
+						  		<br/>
+						  <label >WEBSITE :</label>
+						  <input type="text" class="form-control" id="txtWebsite">
+						</div>
+
+						   <div class="form-group">
+						  <label >CITY :</label>
+						  <input type="text" class="form-control "  id="txtCity">
+						  		<br/>
+						  <label >STREET :</label>
+						  <input type="text" class="form-control" id="txtStreet">
+						</div>
+
+						   <div class="form-group">
+						  <label >SUITE :</label>
+						  <input type="text" class="form-control "  id="txtSuite">
+						  		<br/>
+						  <label >ZIPCODE :</label>
+						  <input type="text" class="form-control" id="txtZipcode">
+						</div>
+
+
+								   <div class="form-group ">
+						  <label >GEO LAT :</label>
+						  <input type="text" class="form-control  "  id="txtLat">
+						  		<br/>
+						  <label >GEO LNG :</label>
+						  <input type="text" class="form-control " id="txtLng">
+						</div>
+
+								   <div class="form-group ">
+						  <label >COMPANY NAME :</label>
+						  <input type="text" class="form-control  "  id="txtComName">
+						  		<br/>
+						  <label >COMPANY CATCH PHRASE :</label>
+						  <input type="text" class="form-control " id="txtComCP">
+						  <br/>
+						  <label >COMPANY BS :</label>
+						  <input type="text" class="form-control " id="txtComBs">
+						</div>
+
+					    
+  
+   
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+		<script>
+
+        var dt;
+        $(document).ready(function () {
+            const url = "https://jsonplaceholder.typicode.com/users";
+
+            var user = null;
+            var UserId = getUrlParameter('id');
+            var chitiet = url + '/' + UserId;
+            fetch(
+                chitiet, { method: "GET" }
+            ).then(response => response.json())
+                .then(data => {
+                    setText(data);
+                }).catch(err => { throw err });
+        });
+         function setText(user) {
+            $('#txtid').val(user.id);
+            $('#txtname').val(user.name);
+            $('#txtusername').val(user.username);
+            $('#txtemail').val(user.email);
+            $('#txtphone').val(user.phone);
+            $('#txtWebsite').val(user.website);
+            $('#txtCity').val(user.address.city);
+            $('#txtStreet').val(user.address.street);
+            $('#txtSuite').val(user.address.suite);
+            $('#txtZipcode').val(user.address.zipcode);
+            $('#txtLat').val(user.address.geo.lat);
+            $('#txtLng').val(user.address.geo.lng);
+            $('#txtComName').val(user.company.name);
+            $('#txtComCP').val(user.company.catchPhrase);
+            $('#txtComBs').val(user.company.bs);
+        }
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+   
+</script>
+	</body>
+	
+</html>
+
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> LIST EMPLOYER</title>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="table-responsive">
+				<h1> LIST USERS</h1>
+				
+				<table class="table table-bordered table-striped " id="dtUsers">
+					<tr>
+						<th>USERNAME</th>
+						<th>NAME</th>
+						<th>EMAIL</th>
+						<th>ADDRESS(CITY)</th>
+						<th>PHONE</th>
+						<th>COMPANY(NAME)</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		</body>
+			<script>
+				var dt;
+		
+	 $(document).ready(function () {
+            const url = "https://jsonplaceholder.typicode.com/users";
+            const baseUrl = 'file:///D:/Placeholder/index.html';
+            const avatar = '<img class="avatar_img" src="images/pen.png">';
+            var chitiet = baseUrl.replace('index.html','details.html');
+            var dt = null;
+            fetch(
+                url, { method: "GET" }
+            ).then(response => response.json())
+                .then(data => {
+                    $.each(data, function (index, value) {
+                        var row = $('<tr></tr>');
+                        row.append('<td><a href="' + chitiet + '?id=' + value.id + '">' + avatar + value.name + '</a></td>');
+                        row.append('<td>' + value.username + '</td>');
+                        row.append('<td>' + value.email + '</td>');
+                        row.append('<td>' + value.address.city + '</td>');
+                        row.append('<td>' + value.phone + '</td>');
+                        row.append('<td>' + value.company.name + '</td>');
+                        $('#dtUsers tbody').prepend(row);
+                    });
+                    $('#dtUsers').DataTable();
+                }).catch(err => { throw err });
+            });
+       
+</script>
+	
+	
+</html>
+
+
+
+
